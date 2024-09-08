@@ -5,8 +5,8 @@ const PORT = process.env.PORT || 5000;
 // Import required modules
 const express = require('express');
 const cors = require('cors');
-const {signup,login} = require('./controllers/userController');
-
+//const {signup,login} = require('./controllers/userController');
+const userRoutes = require('./routes/User');
 
 
 // Initialize Express app
@@ -19,8 +19,8 @@ app.use(express.json());
 
 
 // Userroute
-app.use('/api/user/signup',signup);
-app.use('/api/user/login',login);
+//This line in server.js tells Express to use userRoutes for any requests that start with /api/user
+app.use('/api/user/',userRoutes);
 
 
 
