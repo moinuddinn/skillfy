@@ -5,14 +5,15 @@ const jwt = require('jsonwebtoken');
 //Creating new user handler
 const signup= async (req,res)=> {
 
-  try{
+  try{  
+        // Extract user details from request body
         const {name,email,password}=req.body;
         //check if user exists
         const userExist = await  UserModel.findOne({email});
         if(userExist){
           return res.send('User already exist');
         }
-        // Extract user details from request body
+
         const newUser = new  UserModel({  name, email,password })
         newUser.password = await bcrypt.hash(password,10);
         //new user create
